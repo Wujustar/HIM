@@ -22,12 +22,17 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/message_name"
                 android:layout_width="120dp"
-                android:layout_height="35dp" />
+                android:layout_height="35dp"
+                android:gravity="center_vertical"
+                android:text="이름"/>
 
             <TextView
+                android:id="@+id/message_content"
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="25dp"
+                android:text="메시지 내용"/>
 
 
         </LinearLayout>
@@ -41,13 +46,18 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/message_call"
                 android:layout_weight="1"
                 android:layout_width="35dp"
-                android:layout_height="35dp" />
+                android:layout_height="35dp"
+                android:background="@android:color/holo_green_dark"/>
 
             <TextView
+                android:gravity="center"
+                android:id="@+id/message_time"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
+                android:text="10:40"
                 />
 
         </LinearLayout>
