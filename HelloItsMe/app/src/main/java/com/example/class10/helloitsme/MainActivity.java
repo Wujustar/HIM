@@ -13,12 +13,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
-import com.example.class10.helloitsme.adapter.CustomViewPager;
 import com.example.class10.helloitsme.adapter.MainViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
     ImageView main_iv_search, main_iv_logo, main_iv_menu;
-//    ViewPager main_viewPager;
+    //    ViewPager main_viewPager;
     LinearLayout main_lnl;
     BottomNavigationView main_bottomNavigationView;
     MainViewPagerAdapter mainViewPagerAdapter;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         // ### Control Search Button on Toolbar ###
         main_toolbar = (Toolbar) findViewById(R.id.main_toolbar);
 
-        main_iv_search = (ImageView)findViewById(R.id.main_iv_search);
+        main_iv_search = (ImageView) findViewById(R.id.main_iv_search);
         main_iv_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,12 +54,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
-                        switch (item.getItemId()){
-                            case R.id.main_menu_display :
+                        switch (item.getItemId()) {
+                            case R.id.main_menu_display:
                                 break;
-                            case R.id.main_menu_developer :
+                            case R.id.main_menu_developer:
                                 break;
-                            case R.id.main_menu_settings :
+                            case R.id.main_menu_settings:
                                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                                 startActivity(intent);
                                 break;
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         // ### Control ViewPager and BottomNavigationView ###
         main_lnl = (LinearLayout) findViewById(R.id.main_lnl);
         //main_viewPager = (ViewPager) findViewById(R.id.main_viewPager);
-        customViewPager = (CustomViewPager)findViewById(R.id.main_customViewPager);
+        customViewPager = (CustomViewPager) findViewById(R.id.main_customViewPager);
         main_bottomNavigationView = (BottomNavigationView) findViewById(R.id.main_bottomNavigationView);
 
         mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), 4);
@@ -89,39 +88,39 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 main_toolbar.setVisibility(View.VISIBLE);
-                if(customViewPager.getCurrentItem() == R.id.main_navigation_notification){
+                if (customViewPager.getCurrentItem() == R.id.main_navigation_notification) {
                     main_toolbar.setVisibility(View.GONE);
                 }
-                switch (menuItem.getItemId()){
-                    case R.id.main_navigation_home :
+                switch (menuItem.getItemId()) {
+                    case R.id.main_navigation_home:
                         menuItem.setChecked(true);
-                        customViewPager.setCurrentItem(0,false);
+                        customViewPager.setCurrentItem(0, false);
                         page = 1;
                         break;
 
-                    case R.id.main_navigation_search :
+                    case R.id.main_navigation_search:
                         menuItem.setChecked(true);
-                        customViewPager.setCurrentItem(1,false);
+                        customViewPager.setCurrentItem(1, false);
                         page = 2;
                         break;
 
-                    case R.id.main_navigation_add :
+                    case R.id.main_navigation_add:
                         Intent intent = new Intent(MainActivity.this, AddActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.activity_anim_not_move, R.anim.activity_anim_not_move);
 
                         break;
 
-                    case R.id.main_navigation_notification :
+                    case R.id.main_navigation_notification:
                         main_toolbar.setVisibility(View.GONE);
                         menuItem.setChecked(true);
-                        customViewPager.setCurrentItem(2,false);
+                        customViewPager.setCurrentItem(2, false);
                         page = 4;
                         break;
 
-                    case R.id.main_navigation_info :
+                    case R.id.main_navigation_info:
                         menuItem.setChecked(true);
-                        customViewPager.setCurrentItem(3,false);
+                        customViewPager.setCurrentItem(3, false);
                         page = 5;
                         break;
 
@@ -131,14 +130,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-//  ### Toolbar hides when specific fragment in MainAcitivity is called again (from other activities) ###
+
+    //  ### Toolbar hides when specific fragment in MainAcitivity is called again (from other activities) ###
     @Override
     protected void onResume() {
         super.onResume();
-        if(page == 4){
+        if (page == 4) {
             main_toolbar.setVisibility(View.GONE);
         }
     }
+}
 
 //    public void showPopupMenu(View v){
 //        PopupMenu popupMenu = new PopupMenu(this, v);
@@ -155,39 +156,4 @@ public class MainActivity extends AppCompatActivity {
 //
 //    }
 
-//    StringBuffer sb = new StringBuffer();
-//    Cursor managedCursor = managedQuery(CallLog.Calls.CONTENT_URI, null,
-//            null, null, null);
-//    int number = managedCursor.getColumnIndex(CallLog.Calls.NUMBER);
-//    int date = managedCursor.getColumnIndex(CallLog.Calls.DATE);
-//    int name = managedCursor.getColumnIndex(CallLog.Calls.CACHED_NAME);
-//
-//while (managedCursor.moveToNext()) {
-//        String phNumber = managedCursor.getString(number); //전화번호
-//        String callType = managedCursor.getString(type); // 수신, 송신, 수신안됨
-//        String callDate = managedCursor.getString(date); //날짜 시간
-//        String Named = managedCursor.getString(name); //이름
-//        Date callDayTime = new Date(Long.valueOf(callDate));
-//        String callDuration = managedCursor.getString(duration);
-//        String dir = null;
-//        int dircode = Integer.parseInt(callType);
-//        switch (dircode) {
-//            case CallLog.Calls.OUTGOING_TYPE:
-//                dir = "송신";
-//                break;
-//
-//            case CallLog.Calls.INCOMING_TYPE:
-//                dir = "수신";
-//                break;
-//
-//            case CallLog.Calls.MISSED_TYPE:
-//                dir = "통화안됨";
-//                break;
-//        }
-//        sb.append("\n전화번호: " + phNumber + "\n날짜: " + callDayTime
-//        );
-//        sb.append("\n----------------------------------");
-//    }
-//managedCursor.close();
-//Toast.makeText(MainActivity.this , sb, Toast.LENGTH_LONG).show();
-}
+

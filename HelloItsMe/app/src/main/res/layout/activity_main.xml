@@ -68,7 +68,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <com.example.class10.helloitsme.adapter.CustomViewPager
+        <com.example.class10.helloitsme.CustomViewPager
             android:id="@+id/main_customViewPager"
             android:layout_height="match_parent"
             android:layout_width="match_parent" />

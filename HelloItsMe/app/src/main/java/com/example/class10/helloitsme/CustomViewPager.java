@@ -1,4 +1,4 @@
-package com.example.class10.helloitsme.adapter;
+package com.example.class10.helloitsme;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
