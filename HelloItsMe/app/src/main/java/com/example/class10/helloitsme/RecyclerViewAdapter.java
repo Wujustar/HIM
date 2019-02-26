@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+import org.w3c.dom.Text;
 
-    public MessageAdapter() {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    public RecyclerViewAdapter() {
 
     }
 
@@ -21,8 +23,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
 
-                view = View.inflate(viewGroup.getContext(), R.layout.home_recyclerview_message_items, null);
-                viewHolder = new ViewHolder(view);
+                view = View.inflate(viewGroup.getContext(), R.layout.home_recyclerview_call_items, null);
+                viewHolder = new CallViewHolder(view);
 
 
 //            case 1:
@@ -48,15 +50,16 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-    private class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView message_call;
-        TextView message_name, message_content, message_time;
-        public ViewHolder(View view) {
+    private class CallViewHolder extends RecyclerView.ViewHolder {
+        ImageView call_receive, call_call;
+        TextView call_name, call_number, call_time;
+        public CallViewHolder(View view) {
             super(view);
-            message_call = (ImageView) view.findViewById(R.id.message_call);
-            message_name = (TextView) view.findViewById(R.id.message_name);
-            message_content = (TextView) view.findViewById(R.id.message_content);
-            message_time = (TextView) view.findViewById(R.id.message_time);
+            call_receive = (ImageView) view.findViewById(R.id.call_receive);
+            call_call = (ImageView) view.findViewById(R.id.call_call);
+            call_name = (TextView) view.findViewById(R.id.call_name);
+            call_number = (TextView) view.findViewById(R.id.call_number);
+            call_time = (TextView) view.findViewById(R.id.call_time);
         }
     }
 
