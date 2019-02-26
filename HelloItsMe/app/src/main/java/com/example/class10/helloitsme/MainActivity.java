@@ -1,19 +1,26 @@
 package com.example.class10.helloitsme;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.RadioButton;
 
 import com.example.class10.helloitsme.adapter.MainViewPagerAdapter;
+import com.example.class10.helloitsme.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
     ImageView main_iv_search, main_iv_logo, main_iv_menu;
@@ -23,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     MainViewPagerAdapter mainViewPagerAdapter;
     CustomViewPager customViewPager;
     Toolbar main_toolbar;
+    View menu_filter_view;
+    HomeFragment homeFragment;
+
+
+
     int page = 0;
 
 
@@ -30,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // ### Control Search Button on Toolbar ###
         main_toolbar = (Toolbar) findViewById(R.id.main_toolbar);
@@ -46,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
         // ### Control Menu Button on Toolbar (using PopUpMenu) ###
         main_iv_menu = (ImageView) findViewById(R.id.main_iv_menu);
+
+
         main_iv_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +71,38 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (item.getItemId()) {
                             case R.id.main_menu_display:
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                menu_filter_view = View.inflate(MainActivity.this, R.layout.menu_filter, null);
+                                final RadioButton menu_filter_both = (RadioButton) menu_filter_view.findViewById(R.id.menu_filter_both);
+                                final RadioButton menu_filter_call = (RadioButton) menu_filter_view.findViewById(R.id.menu_filter_call);
+                                final RadioButton menu_filter_message = (RadioButton) menu_filter_view.findViewById(R.id.menu_filter_message);
+                                menu_filter_both.setChecked(true);
+                                builder.setTitle("화면 편집")
+                                        .setView(menu_filter_view)
+                                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                            }
+                                        })
+                                        .setPositiveButton("적용", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                HomeFragment page = (HomeFragment)getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 0));
+                                                if(menu_filter_both.isChecked()){
+                                                    page.showAll();
+
+                                                }else if(menu_filter_call.isChecked()){
+                                                    page.showAll();
+                                                    page.hideMessage();
+
+                                                }else if(menu_filter_message.isChecked()){
+                                                    page.showAll();
+                                                    page.hideCall();
+                                                }
+                                            }
+                                        })
+                                        .show();
                                 break;
                             case R.id.main_menu_developer:
                                 break;
@@ -119,9 +166,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.main_navigation_info:
-                        menuItem.setChecked(true);
-                        customViewPager.setCurrentItem(3, false);
-                        page = 5;
+                        Intent intent1 = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(intent1);
+                        overridePendingTransition(R.anim.activity_anim_not_move, R.anim.activity_anim_not_move);
                         break;
 
                 }
@@ -138,6 +185,11 @@ public class MainActivity extends AppCompatActivity {
         if (page == 4) {
             main_toolbar.setVisibility(View.GONE);
         }
+    }
+
+    // Call Internal Fragment Tag Method
+    private static String makeFragmentName(int viewPagerId, int index) {
+        return "android:switcher:" + viewPagerId + ":" + index;
     }
 }
 

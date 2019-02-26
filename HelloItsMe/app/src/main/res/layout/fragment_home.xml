@@ -24,10 +24,16 @@
             android:layout_toRightOf="@id/home_my_profile"
             android:background="@android:color/holo_blue_dark"/>
 
-
-
-
     </RelativeLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical">
+
+    </LinearLayout>
 
     <!--<LinearLayout-->
 
@@ -39,6 +45,7 @@
     <!--</LinearLayout>-->
 
     <LinearLayout
+        android:id="@+id/lnl_call"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -63,6 +70,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lnl_message"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -54,7 +54,7 @@
         <LinearLayout
             android:id="@+id/lnl03"
             android:layout_width="60dp"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:layout_alignParentRight="true"
             android:orientation="vertical"
             android:gravity="center">

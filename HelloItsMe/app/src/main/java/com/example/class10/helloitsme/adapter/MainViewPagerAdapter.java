@@ -1,9 +1,11 @@
 package com.example.class10.helloitsme.adapter;
 
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import com.example.class10.helloitsme.fragment.ContactFragment;
 import com.example.class10.helloitsme.fragment.HomeFragment;
@@ -23,13 +25,10 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
             case 0 :
                 HomeFragment homeFragment = new HomeFragment();
-
                 return homeFragment;
 
             case 1 :
                 ContactFragment contactFragment = new ContactFragment();
-
-
                 return contactFragment;
 
 
@@ -52,4 +51,8 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return tabCount;
     }
+
+
 }
+
+

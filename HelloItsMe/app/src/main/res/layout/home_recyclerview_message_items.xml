@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center_vertical"
-        android:paddingLeft="10dp"
+        android:paddingLeft="25dp"
         android:paddingRight="10dp">
 
 
@@ -26,7 +26,8 @@
                 android:layout_width="120dp"
                 android:layout_height="35dp"
                 android:gravity="center_vertical"
-                android:text="이름"/>
+                android:text="이름"
+                android:textColor="@android:color/black"/>
 
             <TextView
                 android:id="@+id/message_content"
@@ -47,16 +48,17 @@
 
             <ImageView
                 android:id="@+id/message_call"
-                android:layout_weight="1"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+
+                android:layout_marginBottom="5dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:background="@android:color/holo_green_dark"/>
 
             <TextView
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:id="@+id/message_time"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="18dp"
                 android:text="10:40"
                 />
 
