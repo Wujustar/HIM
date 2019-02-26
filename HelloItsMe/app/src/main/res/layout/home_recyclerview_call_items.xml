@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:id="@+id/lnl01"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:layout_marginRight="5dp">
+
+            <ImageView
+                android:id="@+id/call_receive"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@android:color/holo_red_light"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnl02"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/lnl01"
+            android:orientation="vertical">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/call_name"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="이름"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/call_number"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="01012345678"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnl03"
+            android:layout_width="60dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/call_call"
+                android:layout_marginBottom="5dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@android:color/holo_blue_bright"/>
+
+            <TextView
+                android:id="@+id/call_time"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:text="19-02-25"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
