@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.class10.helloitsme.CallRecyclerViewAdapter;
@@ -19,6 +20,7 @@ public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView_call, recyclerView_mesage;
     LinearLayout lnl_call, lnl_message;
+    ImageView home_fBtn_my, home_fBtn_call, home_fBtn_mesage;
 
 
     @Nullable
@@ -44,6 +46,15 @@ public class HomeFragment extends Fragment {
         // ### call and message Recyclerview's ParentLayout ###
         lnl_call = (LinearLayout) view.findViewById(R.id.lnl_call);
         lnl_message = (LinearLayout) view.findViewById(R.id.lnl_message);
+
+        // ### Fold Buttons ###
+        home_fBtn_call = (ImageView) view.findViewById(R.id.home_fBtn_call);
+        home_fBtn_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView_call.setVisibility(View.GONE);
+            }
+        });
 
 
         return view;

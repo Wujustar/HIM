@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center_vertical"
-        android:paddingLeft="25dp"
+        android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
 
@@ -52,7 +52,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@android:color/holo_green_dark"/>
+                android:background="@android:color/holo_green_dark" />
 
             <TextView
                 android:gravity="center_horizontal"

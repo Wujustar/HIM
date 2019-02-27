@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.class10.helloitsme.adapter.MainViewPagerAdapter;
 import com.example.class10.helloitsme.fragment.HomeFragment;
@@ -32,16 +34,23 @@ public class MainActivity extends AppCompatActivity {
     Toolbar main_toolbar;
     View menu_filter_view;
     HomeFragment homeFragment;
+    int page;
+    int fBtn;
 
 
 
-    int page = 0;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
 
 
         // ### Control Search Button on Toolbar ###
@@ -88,23 +97,27 @@ public class MainActivity extends AppCompatActivity {
                                         .setPositiveButton("적용", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                HomeFragment page = (HomeFragment)getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 0));
+                                                homeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 0));
                                                 if(menu_filter_both.isChecked()){
-                                                    page.showAll();
+                                                    homeFragment.showAll();
+                                                    fBtn = 1;
 
                                                 }else if(menu_filter_call.isChecked()){
-                                                    page.showAll();
-                                                    page.hideMessage();
+                                                    homeFragment.showAll();
+                                                    homeFragment.hideMessage();
+                                                    fBtn = 2;
 
                                                 }else if(menu_filter_message.isChecked()){
-                                                    page.showAll();
-                                                    page.hideCall();
+                                                    homeFragment.showAll();
+                                                    homeFragment.hideCall();
+                                                    fBtn = 3;
                                                 }
                                             }
                                         })
                                         .show();
                                 break;
                             case R.id.main_menu_developer:
+
                                 break;
                             case R.id.main_menu_settings:
                                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
@@ -130,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), 4);
         customViewPager.setAdapter(mainViewPagerAdapter);
         customViewPager.setPagingEnabled(false);
+        customViewPager.setOffscreenPageLimit(4);
 
         main_bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -185,12 +199,21 @@ public class MainActivity extends AppCompatActivity {
         if (page == 4) {
             main_toolbar.setVisibility(View.GONE);
         }
+
+
+
     }
+
+
+
+
 
     // Call Internal Fragment Tag Method
     private static String makeFragmentName(int viewPagerId, int index) {
         return "android:switcher:" + viewPagerId + ":" + index;
     }
+
+
 }
 
 //    public void showPopupMenu(View v){

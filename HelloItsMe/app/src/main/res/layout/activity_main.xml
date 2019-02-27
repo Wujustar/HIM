@@ -20,6 +20,12 @@
 
             android:padding="5dp">
 
+            <TextView
+                android:id="@+id/txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="123123123123123123123123123"/>
+
             <ImageView
                 android:id="@+id/main_iv_search"
                 android:layout_width="30dp"

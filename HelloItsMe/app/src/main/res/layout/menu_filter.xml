@@ -32,18 +32,21 @@
             android:id="@+id/menu_filter_both"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:text="  최근통화 + 메시지"/>
 
         <RadioButton
             android:id="@+id/menu_filter_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:text="  최근통화만 보기"/>
 
         <RadioButton
             android:id="@+id/menu_filter_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:text="  메시지만 보기"/>
 
     </RadioGroup>
