@@ -11,20 +11,12 @@
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-
         android:elevation="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:padding="5dp">
-
-            <TextView
-                android:id="@+id/txt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="123123123123123123123123123"/>
 
             <ImageView
                 android:id="@+id/main_iv_search"

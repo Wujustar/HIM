@@ -2,6 +2,7 @@ package com.example.class10.helloitsme;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 
@@ -35,12 +36,7 @@ public class MainActivity extends AppCompatActivity {
     View menu_filter_view;
     HomeFragment homeFragment;
     int page;
-    int fBtn;
-
-
-
-
-
+    int fBtn = 0;
 
 
     @Override
@@ -48,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
+        /// ### Make Activity Instance save fBtn value ###
+        SharedPreferences sharedPreferences = getSharedPreferences("save", 0);
+        fBtn = sharedPreferences.getInt("save_fBtn", 0);
 
 
         // ### Control Search Button on Toolbar ###
@@ -201,12 +197,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences sharedPreferences = getSharedPreferences("save", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("save_fBtn", fBtn);
+        editor.commit();
 
-
-
+    }
 
     // Call Internal Fragment Tag Method
     private static String makeFragmentName(int viewPagerId, int index) {
