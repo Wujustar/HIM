@@ -1,13 +1,14 @@
 package com.example.class10.helloitsme;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 public class ItemClickSupport {
     private final RecyclerView mRecyclerView;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
-    private static int num = 0;
+
 
 
 
@@ -20,10 +21,6 @@ public class ItemClickSupport {
             }
         }
     };
-
-    public void setNum(int num) {
-        ItemClickSupport.num = num;
-    }
 
     private View.OnLongClickListener mOnLongClickListener = new View.OnLongClickListener() {
         @Override
@@ -53,25 +50,26 @@ public class ItemClickSupport {
         }
     };
 
-    public ItemClickSupport(RecyclerView recyclerView) {
+    public ItemClickSupport(RecyclerView recyclerView, int num) {
 
         mRecyclerView = recyclerView;
         mRecyclerView.setTag(num, this);
         mRecyclerView.addOnChildAttachStateChangeListener(mAttachListener);
     }
 
-    public static ItemClickSupport addTo(RecyclerView view) {
+    public static ItemClickSupport addTo(RecyclerView view, int num) {
         ItemClickSupport support = (ItemClickSupport) view.getTag(num);
+
         if (support == null) {
-            support = new ItemClickSupport(view);
+            support = new ItemClickSupport(view, num);
         }
         return support;
     }
 
-    public static ItemClickSupport removeFrom(RecyclerView view) {
+    public static ItemClickSupport removeFrom(RecyclerView view , int num) {
         ItemClickSupport support = (ItemClickSupport) view.getTag(num);
         if (support != null) {
-            support.detach(view);
+            support.detach(view, num);
         }
         return support;
     }
@@ -86,7 +84,7 @@ public class ItemClickSupport {
         return this;
     }
 
-    private void detach(RecyclerView view) {
+    private void detach(RecyclerView view, int num) {
         view.removeOnChildAttachStateChangeListener(mAttachListener);
         view.setTag(num, null);
     }

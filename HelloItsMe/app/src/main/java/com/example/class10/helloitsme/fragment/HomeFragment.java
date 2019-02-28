@@ -39,21 +39,25 @@ public class HomeFragment extends Fragment {
         lnl_call_bar = (LinearLayout) view.findViewById(R.id.lnl_call_bar);
         lnl_message_bar = (LinearLayout)view.findViewById(R.id.lnl_message_bar);
         recyclerView_call = (RecyclerView) view.findViewById(R.id.home_recyclerView_call);
+        recyclerView_message = (RecyclerView) view.findViewById(R.id.home_recyclerView_message);
+//        recyclerView_call.setTag(R.id.item_click_support_call, this);
+
 
         //### RecyclerView Click Listener
 
-        ItemClickSupport itemClickSupport = new ItemClickSupport(recyclerView_call);
-        itemClickSupport.setNum(0);
-        itemClickSupport.addTo(recyclerView_call).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+
+
+
+        ItemClickSupport.addTo(recyclerView_call, R.id.item_click_support_call).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 Toast.makeText(v.getContext(), position + "번 숏클릭", Toast.LENGTH_SHORT).show();
             }
         });
-        ItemClickSupport itemClickSupport01 = new ItemClickSupport(recyclerView_message);
-        itemClickSupport01.setNum(1);
 
-        itemClickSupport01.addTo(recyclerView_message).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+
+
+        ItemClickSupport.addTo(recyclerView_message, R.id.item_click_support_message).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 Toast.makeText(v.getContext(), position + "번 숏클릭", Toast.LENGTH_SHORT).show();
@@ -70,7 +74,7 @@ public class HomeFragment extends Fragment {
         recyclerView_call.setLayoutManager(layoutManager);
 
         // ### Message List RecyclerView adapter ###
-        recyclerView_message = (RecyclerView) view.findViewById(R.id.home_recyclerView_message);
+
         MessageRecyclerViewAdapter messageAdapter = new MessageRecyclerViewAdapter();
         recyclerView_message.setAdapter(messageAdapter);
         RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(getContext());
