@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), 4);
         customViewPager.setAdapter(mainViewPagerAdapter);
         customViewPager.setPagingEnabled(false);
-        customViewPager.setOffscreenPageLimit(4);
+        customViewPager.setOffscreenPageLimit(3);
 
         main_bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -202,12 +203,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d("life", "포즈");
         SharedPreferences sharedPreferences = getSharedPreferences("save", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("save_fBtn", fBtn);
         editor.commit();
 
     }
+
+
 
     // Call Internal Fragment Tag Method
     private static String makeFragmentName(int viewPagerId, int index) {

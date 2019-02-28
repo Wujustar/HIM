@@ -6,12 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
 public class CallRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+
+
     public CallRecyclerViewAdapter() {
+
 
     }
 
@@ -22,15 +26,8 @@ public class CallRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         RecyclerView.ViewHolder viewHolder = null;
 
 
-
-                view = View.inflate(viewGroup.getContext(), R.layout.home_recyclerview_call_items, null);
-                viewHolder = new CallViewHolder(view);
-
-
-//            case 1:
-//                view = View.inflate(viewGroup.getContext(), R.layout.home_recyclerview_message_items, null);
-//                viewHolder = new MessageViewHolder(view);
-//                break;
+        view = View.inflate(viewGroup.getContext(), R.layout.home_recyclerview_call_items, null);
+        viewHolder = new CallViewHolder(view);
 
 
 
@@ -38,11 +35,12 @@ public class CallRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
 
-
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder callViewHolder, int position) {
 
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -50,23 +48,27 @@ public class CallRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
 
-    private class CallViewHolder extends RecyclerView.ViewHolder {
+    static class CallViewHolder extends RecyclerView.ViewHolder {
         ImageView call_receive, call_call;
         TextView call_name, call_number, call_time;
+
+
         public CallViewHolder(View view) {
             super(view);
+
             call_receive = (ImageView) view.findViewById(R.id.call_receive);
             call_call = (ImageView) view.findViewById(R.id.call_call);
             call_name = (TextView) view.findViewById(R.id.call_name);
             call_number = (TextView) view.findViewById(R.id.call_number);
             call_time = (TextView) view.findViewById(R.id.call_time);
         }
+
+
+        }
     }
 
 
 
-
-}
 
 
 
