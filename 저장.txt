@@ -1,0 +1,85 @@
+<external storage permission>
+ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);
+	
+<data folder>
+getDataDirectory
+	
+<download cache>
+getDownloadCacheDirectory
+	
+<SD card>
+getExternalStorageDirectory
+	
+<create and delete directory>
+File myDir = new File(parent dir path +_ "/mydir");
+myDir.mkdir(); -> create
+myDir.delete(); -> delete
+
+<Android Default Color>
+android:background="#FAFAFA"
+	
+<Elevation Error>
+1. check view has background color -> set background color
+2. check view has enough space -> make space by margin or something
+
+<Hide status bar>
+getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+<SharedPreferences - save data even if app is finished>
+
+
+	###불러올 곳(액티비티에서 저장하고 프래그먼트에서 불러오는 것도 가능 / life cycle에 따라 뷰 생성전 - onCreateView / 뷰 생성 후 - onActivityCreated에서 선언)
+
+        SharedPreferences pref = getSharedPreferences("first", 0);
+        String text = pref.getString("text", "");
+        edt.setText(text);
+
+
+	###저장할 곳 onStop or onPause(앱 종료할 때 저장 or pause 마다 저장)     
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences sharedPreferences = getSharedPreferences("first", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String text = edt.getText().toString();
+        editor.putString("text", text);
+        editor.commit();
+    }
+}
+
+
+
+<xml에서 만든 뷰들에 visible을 자바 코드에서 동적으로 선언할때 visible invisible gone>
+
+각각의 뷰들을 LinearLayout으로 최대한 많이 나눠야 뷰들의 공간왜곡이 줄어든다(특히 weight를 준 경우)
+
+<fragment state save with viewpager>
+
+customViewPager.setOffscreenPageLimit(4);
+앞뒤로 4개의 프래그먼트를 첫장에서 미리 생성한다
+
+
+<RecyclerView clicklistener>
+
+https://gist.github.com/nesquena/231e356f372f214c4fe6
+
+
+<Make Circular ImageView>
+
+defendency 에서 shape imageview를 import
+
+<API 22 롤리팝 이상에서 statusBar color와 text color 바꾸기>
+
+### SET STATUSBAR COLOR AND STATUSBAR TEXT COLOR IF VERSION IS HIGHER THAN API 22###
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.colorBasic));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+
+###xml
+        <item name="android:statusBarColor">@color/colorBasic</item>
+        <item name="android:windowLightStatusBar">true</item>
