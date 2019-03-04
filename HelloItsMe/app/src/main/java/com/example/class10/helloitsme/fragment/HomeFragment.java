@@ -40,13 +40,9 @@ public class HomeFragment extends Fragment {
         lnl_message_bar = (LinearLayout)view.findViewById(R.id.lnl_message_bar);
         recyclerView_call = (RecyclerView) view.findViewById(R.id.home_recyclerView_call);
         recyclerView_message = (RecyclerView) view.findViewById(R.id.home_recyclerView_message);
-//        recyclerView_call.setTag(R.id.item_click_support_call, this);
 
 
         //### RecyclerView Click Listener
-
-
-
 
         ItemClickSupport.addTo(recyclerView_call, R.id.item_click_support_call).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
