@@ -65,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
         // ### Control Menu Button on Toolbar (using PopUpMenu) ###
         main_iv_menu = (ImageView) findViewById(R.id.main_iv_menu);
-
-
         main_iv_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
         // ### Control ViewPager and BottomNavigationView ###
         main_lnl = (LinearLayout) findViewById(R.id.main_lnl);
-        //main_viewPager = (ViewPager) findViewById(R.id.main_viewPager);
         customViewPager = (CustomViewPager) findViewById(R.id.main_customViewPager);
         main_bottomNavigationView = (BottomNavigationView) findViewById(R.id.main_bottomNavigationView);
 
@@ -196,8 +193,6 @@ public class MainActivity extends AppCompatActivity {
         if (page == 4) {
             main_toolbar.setVisibility(View.GONE);
         }
-
-
     }
 
     @Override
@@ -211,9 +206,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-    // Call Internal Fragment Tag Method
+    // Call Fragment's Internal Tag Method
     private static String makeFragmentName(int viewPagerId, int index) {
         return "android:switcher:" + viewPagerId + ":" + index;
     }
