@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/noti_tabLayout"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:minHeight="?actionBarSize"
-        app:tabGravity="fill"
-        app:tabMode="fixed"
-        android:background="#ffffff"
-        app:tabIndicatorHeight="1dp"
-        app:tabIndicatorColor="@android:color/black"
-        android:elevation="3dp"
-        app:tabBackground="@android:color/white"
-        app:tabRippleColor="@android:color/white"
-        app:tabTextColor="@android:color/black">
+        android:layout_height="wrap_content"
+        android:background="@color/colorBasic">
 
-        <android.support.design.widget.TabItem
-            android:id="@+id/tab01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="공지사항"/>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/noti_tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:elevation="3dp"
+            android:minHeight="?actionBarSize"
+            app:tabBackground="@color/colorBasic"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/black"
+            app:tabIndicatorHeight="1dp"
+            app:tabMode="fixed"
+            app:tabRippleColor="@android:color/white"
+            app:tabTextColor="@color/colorDefaultText"
+            app:tabSelectedTextColor="@android:color/black"
+            >
 
-        <android.support.design.widget.TabItem
-            android:id="@+id/tab02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="내 알림"/>
+            <android.support.design.widget.TabItem
+                android:id="@+id/noti_tab01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공지사항"
+                />
 
-    </android.support.design.widget.TabLayout>
+            <android.support.design.widget.TabItem
+                android:id="@+id/noti_tab02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내 알림"
+                />
+
+        </android.support.design.widget.TabLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/noti_viewPager"

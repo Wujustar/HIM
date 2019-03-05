@@ -1,4 +1,4 @@
-package com.example.class10.helloitsme;
+package com.example.class10.helloitsme.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.class10.helloitsme.R;
 
 import org.w3c.dom.Text;
 

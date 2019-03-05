@@ -7,58 +7,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/main_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:elevation="5dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/main_iv_search"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/button_search_selector" />
-
-            <ImageView
-                android:id="@+id/main_iv_logo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/main_iv_menu"
-                android:layout_toRightOf="@+id/main_iv_search" />
-
-
-            <ImageView
-                android:id="@+id/main_iv_menu"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:src="@drawable/button_menu" />
-
-        </RelativeLayout>
-
-    </android.support.v7.widget.Toolbar>
-
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray"
-        android:orientation="vertical">
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/main_lnl"
@@ -89,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:animateLayoutChanges="false"
-        android:background="#ffffff"
+        android:background="@color/colorWhite"
         android:elevation="10dp"
         android:minHeight="?actionBarSize"
         app:itemBackground="@android:color/white"
