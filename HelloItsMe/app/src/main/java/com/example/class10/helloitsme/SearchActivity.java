@@ -1,21 +1,19 @@
 package com.example.class10.helloitsme;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.class10.helloitsme.adapter.ContactRecyclerViewAdapter;
+import com.example.class10.helloitsme.adapter.MyRecyclerViewAdapter;
 
 public class SearchActivity extends AppCompatActivity {
     ImageView search_iv_prev;
     RecyclerView recyclerView_contact;
+    private static final int CONTACT = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +28,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        ContactRecyclerViewAdapter contactRecyclerViewAdapter = new ContactRecyclerViewAdapter();
+        MyRecyclerViewAdapter contactRecyclerViewAdapter = new MyRecyclerViewAdapter(2);
         recyclerView_contact = (RecyclerView) findViewById(R.id.search_recyclerView_contact);
         recyclerView_contact.setAdapter(contactRecyclerViewAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);

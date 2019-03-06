@@ -83,3 +83,84 @@ defendency 에서 shape imageview를 import
 ###xml
         <item name="android:statusBarColor">@color/colorBasic</item>
         <item name="android:windowLightStatusBar">true</item>
+
+
+
+<리스트뷰 처음과 끝감지 방법 >
+
+rv01.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                if(rv01 != null){
+                    if(rv01.getChildAt(0).getBottom() <= (rv01.getHeight() + rv01.getScrollY())){
+
+                    }
+                    if(rv01.getTop() >= (rv01.getHeight() + rv01.getScrollY())){
+                        Toast.makeText(MainActivity.this, "맨위", Toast.LENGTH_SHORT).show();
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            tb01.setElevation(0);
+                        }
+
+                    }
+                }
+            }
+        });
+
+
+
+<리사이클러뷰 처음과 끝 감지 - hide elevation>
+
+rv01.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+
+                if (!rv01.canScrollVertically(-1)) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        tb01.setElevation(0);
+                    }
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        tb01.setElevation(4);
+                    }
+                }
+            }
+
+        });
+
+<리사이클러뷰 스크롤뷰 스크롤바 옵션>
+
+android:scrollbars="vertical" 
+android:scrollbarThumbVertical="@android:color/darker_gray" 현재위치 스크롤바 색상
+android:scrollbarTrackVertical="@android:" 전체 스크롤바 색상
+android:scrollbarSize="5dp"
+
+
+
+<스크롤뷰 위아래 스크롤 효과 및 애니메이션>
+
+안녕하세요
+
+Over Scroll effect 기능은 API level 9 부터 동작해요
+
+아래와 같이 해보세요
+
+listView.setOverscrollFooter(drawable); // Footer 부분 effect
+listView.setOverscrollHeader(drawable); // Header 부분 effect
+- 효과 없애고 싶은 경우
+
+listView.setOverScrollMode(View.OVER_SCROLL_NEVER); // effect 작동안함
+- 기본 설정 되어있음
+
+listView.setOverScrollMode(View.OVER_SCROLL_ALWAYS); // effect (default) 
+
+
+
+
+<리사이클러 뷰 위아래 스크롤 효과 및 색상>
+<item name="android:colorEdgeEffect">@color/colorRippleGray</item> 리소스-스타일에서 색상 적용 - api21이상
+listView.setOverScrollMode(View.OVER_SCROLL_NEVER); // effect 작동안함
+- 기본 설정 되어있음
+
+listView.setOverScrollMode(View.OVER_SCROLL_ALWAYS); // effect (default) 
+

@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -23,24 +22,23 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.example.class10.helloitsme.MainActivity;
 import com.example.class10.helloitsme.SearchActivity;
 import com.example.class10.helloitsme.SettingsActivity;
-import com.example.class10.helloitsme.adapter.CallRecyclerViewAdapter;
 import com.example.class10.helloitsme.ItemClickSupport;
-import com.example.class10.helloitsme.adapter.MessageRecyclerViewAdapter;
 import com.example.class10.helloitsme.R;
+import com.example.class10.helloitsme.adapter.MyRecyclerViewAdapter;
 
 public class HomeFragment extends Fragment {
     ImageView home_iv_search, home_iv_logo, home_iv_menu;
-    Toolbar home_toolbar;
     View menu_filter_view;
     RecyclerView recyclerView_call, recyclerView_message;
-    LinearLayout lnl_call_bar, lnl_message_bar, home_seperateLine01;
+    LinearLayout lnl_call_bar, lnl_message_bar;
     RelativeLayout rl_myState;
     ImageView home_fBtn_my_up, home_fBtn_my_down,
             home_fBtn_call_up, home_fBtn_call_down,
             home_fBtn_message_up, home_fBtn_message_down;
+    static final int HOME_CALL = 0;
+    static final int HOME_MESSAGE = 1;
     int fBtn;
 
 
@@ -50,7 +48,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         // ### Control Search Button on Toolbar ###
-        home_toolbar = (Toolbar) view.findViewById(R.id.home_toolbar);
+
 
         home_iv_search = (ImageView) view.findViewById(R.id.home_iv_search);
         home_iv_search.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +136,7 @@ public class HomeFragment extends Fragment {
         recyclerView_message = (RecyclerView) view.findViewById(R.id.home_recyclerView_message);
 
 
+
         //### RecyclerView Click Listener
 
         ItemClickSupport.addTo(recyclerView_call, R.id.item_click_support_call).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
@@ -160,14 +159,14 @@ public class HomeFragment extends Fragment {
 
         // ### Call List RecyclerView adapter ###
 
-        CallRecyclerViewAdapter callAdapter = new CallRecyclerViewAdapter();
+        MyRecyclerViewAdapter callAdapter = new MyRecyclerViewAdapter(0);
         recyclerView_call.setAdapter(callAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView_call.setLayoutManager(layoutManager);
 
         // ### Message List RecyclerView adapter ###
 
-        MessageRecyclerViewAdapter messageAdapter = new MessageRecyclerViewAdapter();
+        MyRecyclerViewAdapter messageAdapter = new MyRecyclerViewAdapter(1);
         recyclerView_message.setAdapter(messageAdapter);
         RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(getContext());
         recyclerView_message.setLayoutManager(layoutManager1);

@@ -2,25 +2,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ContactFragment"/>
 
-    <!--<FrameLayout-->
-        <!--android:id="@+id/main_frame01"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/contact_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
 
-        <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/main_recyclerView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/contact_iv_search"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/button_search_selector"/>
+
+            <ImageView
+                android:id="@+id/contact_iv_logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/main_iv_menu"
+                android:layout_toRightOf="@+id/main_iv_search" />
 
 
-        <!--</android.support.v7.widget.RecyclerView>-->
+            <ImageView
+                android:id="@+id/contact_iv_menu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/button_menu" />
 
+        </RelativeLayout>
 
-    <!--</FrameLayout>-->
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/contact_seperateLine01"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical">
+
+    </LinearLayout>
 
 </LinearLayout>
