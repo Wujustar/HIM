@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     int page;
     int fBtn = 0;
-    int notiPage = 0;
+    int notiPage = 1;
 
 
     @Override
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         customViewPager = (CustomViewPager) findViewById(R.id.main_customViewPager);
         main_bottomNavigationView = (BottomNavigationView) findViewById(R.id.main_bottomNavigationView);
 
-        mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), 4);
+        mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), 3);
         customViewPager.setAdapter(mainViewPagerAdapter);
         customViewPager.setPagingEnabled(false);
         customViewPager.setOffscreenPageLimit(3);
@@ -118,15 +118,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         Log.d("phase", "main onresult");
-        if(resultCode == RESULT_OK){
-            if(requestCode == 1990){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1990) {
                 customViewPager.setCurrentItem(2, false);
                 main_bottomNavigationView.getMenu().getItem(3).setChecked(true);
+                notiPage = 0;
                 //Log.d("phase", "check");
                 //NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 3));
-                notiPage = 1;
+//                if(notiPage == 0){
+//                    //NotificationFragment fragment = (NotificationFragment) mainViewPagerAdapter.getItem(2);
+//                    NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 2));
+//                    fragment.setPageNum(0);
+//                    notiPage = 1;
+//                }
+
             }
         }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Log.d("phase", "main onstart");
+//        if(notiPage == 1){
+//            //NotificationFragment fragment = (NotificationFragment) mainViewPagerAdapter.getItem(2);
+//            NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 2));
+//            fragment.selectPage(0);
+//            notiPage = 0;
+//        }
 
     }
 
@@ -134,14 +155,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d("phase", "main resume");
-        if(notiPage == 1){
+        if (notiPage == 0) {
             //NotificationFragment fragment = (NotificationFragment) mainViewPagerAdapter.getItem(2);
-            NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 3));
-            fragment.selectPage();
-            notiPage = 0;
+            NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 2));
+            fragment.selectPage(0);
+            customViewPager.getAdapter().notifyDataSetChanged();
+            notiPage = 1;
+
         }
     }
 }
+
 
 
 

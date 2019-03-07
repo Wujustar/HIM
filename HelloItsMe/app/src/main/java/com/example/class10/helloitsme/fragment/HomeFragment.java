@@ -215,7 +215,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        Log.d("life", "포즈");
+        Log.d("phase", "home pause");
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("save", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("save_fBtn", fBtn);

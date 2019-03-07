@@ -22,12 +22,18 @@ public class NotificationFragment extends Fragment {
     ViewPager noti_viewPager;
     NotificationViewPagerAdapter notificationViewPagerAdapter;
     TabLayout noti_tabLayout;
-    TabLayout.Tab tab0;
+    static int pageNum = 0;
 
+    //문제는 여기다
+    public static void setPageNum(int pageNum) {
+        Log.d("phase", "들어옴");
+        NotificationFragment.pageNum = pageNum;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("phase", "노티 프레그먼트 크리에이트");
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
         noti_viewPager = (ViewPager) view.findViewById(R.id.noti_viewPager);
         notificationViewPagerAdapter = new NotificationViewPagerAdapter(getChildFragmentManager());
@@ -65,10 +71,32 @@ public class NotificationFragment extends Fragment {
 
 
         return view;
+
+
     }
 
-    public void selectPage(){
+    public void selectPage(int i){
         Log.d("phase", "들어옴");
-        noti_viewPager.setCurrentItem(1);
+        noti_viewPager.setCurrentItem(i);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("phase", "노티 액티비티 크리에티드");
+//        if(pageNum == 0){
+//            noti_viewPager.setCurrentItem(0);
+//            pageNum = 1;
+//        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("phase", "노티 액티비티 resume");
+        if(pageNum == 0){
+            noti_viewPager.setCurrentItem(0);
+            pageNum = 1;
+        }
     }
 }

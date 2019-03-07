@@ -37,9 +37,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
                 NotificationFragment notificationFragment = new NotificationFragment();
                 return notificationFragment;
 
-            case 3 :
-                MoreFragment moreFragment = new MoreFragment();
-                return moreFragment;
+
 
             default :
                 return null;
