@@ -21,7 +21,7 @@
         android:title="like" />
 
     <item
-        android:id="@+id/main_navigation_info"
+        android:id="@+id/main_navigation_settings"
         android:icon="@drawable/navigation_more"
         android:title="info" />
 

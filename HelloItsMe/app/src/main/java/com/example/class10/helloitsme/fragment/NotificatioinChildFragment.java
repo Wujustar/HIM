@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,14 @@ public class NotificatioinChildFragment extends Fragment {
         View view = inflater.inflate(R.layout.child_fragment_notification, container, false);
         noti_child_txt = (TextView) view.findViewById(R.id.noti_child_lnl_txt);
         noti_child_txt.setText(getArguments().getString("position"));
+        Log.d("phase", "자식 프레그먼트 시작");
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("phase", "자식 프레그먼트 스타트");
     }
 }

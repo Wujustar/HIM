@@ -22,6 +22,7 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.class10.helloitsme.DeveloperActivity;
 import com.example.class10.helloitsme.SearchActivity;
 import com.example.class10.helloitsme.SettingsActivity;
 import com.example.class10.helloitsme.ItemClickSupport;
@@ -109,11 +110,12 @@ public class HomeFragment extends Fragment {
                                         .show();
                                 break;
                             case R.id.main_menu_developer:
-
+                                Intent intentDev = new Intent(getActivity(), DeveloperActivity.class);
+                                startActivity(intentDev);
                                 break;
                             case R.id.main_menu_settings:
-                                Intent intent = new Intent(getActivity(), SettingsActivity.class);
-                                startActivity(intent);
+                                Intent intentSet = new Intent(getActivity(), SettingsActivity.class);
+                                startActivity(intentSet);
                                 break;
                         }
 

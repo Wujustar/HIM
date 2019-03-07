@@ -159,8 +159,9 @@ listView.setOverScrollMode(View.OVER_SCROLL_ALWAYS); // effect (default)
 
 <리사이클러 뷰 위아래 스크롤 효과 및 색상>
 <item name="android:colorEdgeEffect">@color/colorRippleGray</item> 리소스-스타일에서 색상 적용 - api21이상
-listView.setOverScrollMode(View.OVER_SCROLL_NEVER); // effect 작동안함
+
+View.setOverScrollMode(View.OVER_SCROLL_NEVER); // effect 작동안함
 - 기본 설정 되어있음
 
-listView.setOverScrollMode(View.OVER_SCROLL_ALWAYS); // effect (default) 
+View.setOverScrollMode(View.OVER_SCROLL_ALWAYS); // effect (default) 
 

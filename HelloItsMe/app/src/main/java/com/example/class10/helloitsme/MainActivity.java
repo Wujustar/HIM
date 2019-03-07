@@ -4,10 +4,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,24 +27,27 @@ import android.widget.Toast;
 
 import com.example.class10.helloitsme.adapter.MainViewPagerAdapter;
 import com.example.class10.helloitsme.fragment.HomeFragment;
+import com.example.class10.helloitsme.fragment.NotificationFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    //    ViewPager main_viewPager;
+
     LinearLayout main_lnl;
     BottomNavigationView main_bottomNavigationView;
     MainViewPagerAdapter mainViewPagerAdapter;
     CustomViewPager customViewPager;
 
-    HomeFragment homeFragment;
+
     int page;
     int fBtn = 0;
+    int notiPage = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("phase", "main create");
 
         /// ### Make Activity Instance save fBtn value ###
         SharedPreferences sharedPreferences = getSharedPreferences("save", 0);
@@ -64,9 +69,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                if (customViewPager.getCurrentItem() == R.id.main_navigation_notification) {
 
-                }
                 switch (menuItem.getItemId()) {
                     case R.id.main_navigation_home:
                         menuItem.setChecked(true);
@@ -94,9 +97,9 @@ public class MainActivity extends AppCompatActivity {
                         page = 4;
                         break;
 
-                    case R.id.main_navigation_info:
+                    case R.id.main_navigation_settings:
                         Intent intent1 = new Intent(MainActivity.this, SettingsActivity.class);
-                        startActivity(intent1);
+                        startActivityForResult(intent1, 1990);
                         overridePendingTransition(R.anim.activity_anim_not_move, R.anim.activity_anim_not_move);
                         break;
 
@@ -112,7 +115,32 @@ public class MainActivity extends AppCompatActivity {
         return "android:switcher:" + viewPagerId + ":" + index;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Log.d("phase", "main onresult");
+        if(resultCode == RESULT_OK){
+            if(requestCode == 1990){
+                customViewPager.setCurrentItem(2, false);
+                main_bottomNavigationView.getMenu().getItem(3).setChecked(true);
+                //Log.d("phase", "check");
+                //NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 3));
+                notiPage = 1;
+            }
+        }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("phase", "main resume");
+        if(notiPage == 1){
+            //NotificationFragment fragment = (NotificationFragment) mainViewPagerAdapter.getItem(2);
+            NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 3));
+            fragment.selectPage();
+            notiPage = 0;
+        }
+    }
 }
 
 

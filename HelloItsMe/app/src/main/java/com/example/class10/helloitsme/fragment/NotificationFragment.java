@@ -8,6 +8,7 @@ import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class NotificationFragment extends Fragment {
     ViewPager noti_viewPager;
     NotificationViewPagerAdapter notificationViewPagerAdapter;
     TabLayout noti_tabLayout;
+    TabLayout.Tab tab0;
 
 
     @Nullable
@@ -32,6 +34,7 @@ public class NotificationFragment extends Fragment {
         noti_viewPager.setAdapter(notificationViewPagerAdapter);
         noti_tabLayout = (TabLayout) view.findViewById(R.id.noti_tabLayout);
         noti_viewPager.setCurrentItem(1);
+
 
         noti_viewPager.setOffscreenPageLimit(2);
 
@@ -62,5 +65,10 @@ public class NotificationFragment extends Fragment {
 
 
         return view;
+    }
+
+    public void selectPage(){
+        Log.d("phase", "들어옴");
+        noti_viewPager.setCurrentItem(1);
     }
 }
