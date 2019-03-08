@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.class10.helloitsme.MainActivity;
 import com.example.class10.helloitsme.R;
 import com.example.class10.helloitsme.adapter.NotificationViewPagerAdapter;
 
@@ -22,7 +23,7 @@ public class NotificationFragment extends Fragment {
     ViewPager noti_viewPager;
     NotificationViewPagerAdapter notificationViewPagerAdapter;
     TabLayout noti_tabLayout;
-    static int pageNum = 0;
+    static int pageNum = 1;
 
     //문제는 여기다
     public static void setPageNum(int pageNum) {
@@ -39,10 +40,11 @@ public class NotificationFragment extends Fragment {
         notificationViewPagerAdapter = new NotificationViewPagerAdapter(getChildFragmentManager());
         noti_viewPager.setAdapter(notificationViewPagerAdapter);
         noti_tabLayout = (TabLayout) view.findViewById(R.id.noti_tabLayout);
+
         noti_viewPager.setCurrentItem(1);
 
 
-        noti_viewPager.setOffscreenPageLimit(2);
+        noti_viewPager.setOffscreenPageLimit(1);
 
         noti_viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(noti_tabLayout));
 
@@ -84,19 +86,23 @@ public class NotificationFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Log.d("phase", "노티 액티비티 크리에티드");
-//        if(pageNum == 0){
-//            noti_viewPager.setCurrentItem(0);
-//            pageNum = 1;
-//        }
+
     }
 
     @Override
     public void onResume() {
-        super.onResume();
+        noti_viewPager.setCurrentItem(0);
+        noti_viewPager.setCurrentItem(1);
         Log.d("phase", "노티 액티비티 resume");
+
+        pageNum = ((MainActivity)getActivity()).getNotiPage();
+
         if(pageNum == 0){
+            Log.d("phase", "노티 액티비티 resume if문 들어옴" + pageNum);
+
             noti_viewPager.setCurrentItem(0);
             pageNum = 1;
         }
+        super.onResume();
     }
 }

@@ -13,8 +13,10 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.class10.helloitsme.MainActivity;
 import com.example.class10.helloitsme.R;
 import com.example.class10.helloitsme.SearchActivity;
+import com.example.class10.helloitsme.TopDialogActivity;
 
 public class ContactFragment extends Fragment {
     ImageView contact_iv_search, contact_iv_logo, contact_iv_menu;
@@ -37,6 +39,13 @@ public class ContactFragment extends Fragment {
             }
         });
 
+        contact_iv_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), TopDialogActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         return view;

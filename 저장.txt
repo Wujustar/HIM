@@ -165,3 +165,17 @@ View.setOverScrollMode(View.OVER_SCROLL_NEVER); // effect 작동안함
 
 View.setOverScrollMode(View.OVER_SCROLL_ALWAYS); // effect (default) 
 
+
+
+<새로운 액티비티를 열고 종료했을때 이전 액티비티의 프레그먼트에 있는 뷰 상태 변화 인지하기> #뷰페이저 #viewpager
+
+변화를 반영하고자 하는 프래그먼트의 onResume(뷰가 생성되고 난후 시작 전)에서 가지고 있는 자식 뷰들을 한번씩 보여줘야 제대로 작동한다.
+
+@Override
+    public void onResume() {
+        noti_viewPager.setCurrentItem(0);
+        noti_viewPager.setCurrentItem(1);
+
+이전 액티비티의 노티 프래그먼트가 가지고 있는 뷰페이저의 모든 페이지를 한번씩 앞에 둬야 탭의 변화를 반영할 수 있다.
+
+

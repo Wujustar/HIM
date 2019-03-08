@@ -1,5 +1,6 @@
 package com.example.class10.helloitsme;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("phase", "main create");
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, MODE_PRIVATE);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SYSTEM_ALERT_WINDOW}, MODE_PRIVATE);
 
         /// ### Make Activity Instance save fBtn value ###
         SharedPreferences sharedPreferences = getSharedPreferences("save", 0);
@@ -110,9 +115,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Call Fragment's Internal Tag Method
+    // Call Fragment's Internal Tag Method  - Not Reconmmended
     private static String makeFragmentName(int viewPagerId, int index) {
         return "android:switcher:" + viewPagerId + ":" + index;
+    }
+
+
+    // Get notiPage to change status of tablayout in notiFragment
+    public int getNotiPage() {
+        return notiPage;
     }
 
     @Override
@@ -123,14 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 customViewPager.setCurrentItem(2, false);
                 main_bottomNavigationView.getMenu().getItem(3).setChecked(true);
                 notiPage = 0;
-                //Log.d("phase", "check");
-                //NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 3));
-//                if(notiPage == 0){
-//                    //NotificationFragment fragment = (NotificationFragment) mainViewPagerAdapter.getItem(2);
-//                    NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 2));
-//                    fragment.setPageNum(0);
-//                    notiPage = 1;
-//                }
+
 
             }
         }
@@ -142,12 +146,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         Log.d("phase", "main onstart");
-//        if(notiPage == 1){
-//            //NotificationFragment fragment = (NotificationFragment) mainViewPagerAdapter.getItem(2);
-//            NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 2));
-//            fragment.selectPage(0);
-//            notiPage = 0;
-//        }
+
 
     }
 
@@ -155,14 +154,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d("phase", "main resume");
-        if (notiPage == 0) {
-            //NotificationFragment fragment = (NotificationFragment) mainViewPagerAdapter.getItem(2);
-            NotificationFragment fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(makeFragmentName(R.id.main_customViewPager, 2));
-            fragment.selectPage(0);
-            customViewPager.getAdapter().notifyDataSetChanged();
-            notiPage = 1;
 
-        }
     }
 }
 
