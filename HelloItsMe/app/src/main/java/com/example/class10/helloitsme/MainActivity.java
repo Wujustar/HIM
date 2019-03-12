@@ -4,6 +4,10 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -51,8 +55,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("phase", "main create");
 
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, MODE_PRIVATE);
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SYSTEM_ALERT_WINDOW}, MODE_PRIVATE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                Log.d("phase","READ_PHONE_STATE_Permission is granted");
+            }else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, MODE_PRIVATE);
+
+            }
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (Settings.canDrawOverlays(this)) {
+                Log.d("phase","SYSTEM_ALERT_WINDOW_PERMISSION Permission is granted");
+            }else{
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, 10);
+
+            }
+
+        }
+
+
+
+
+
 
         /// ### Make Activity Instance save fBtn value ###
         SharedPreferences sharedPreferences = getSharedPreferences("save", 0);
@@ -134,7 +161,9 @@ public class MainActivity extends AppCompatActivity {
                 customViewPager.setCurrentItem(2, false);
                 main_bottomNavigationView.getMenu().getItem(3).setChecked(true);
                 notiPage = 0;
+            if (requestCode == 10){
 
+                }
 
             }
         }

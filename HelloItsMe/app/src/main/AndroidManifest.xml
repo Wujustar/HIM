@@ -12,24 +12,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SplashActivity">
+
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".SearchActivity" />
         <activity android:name=".AddActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".DeveloperActivity" />
-        <activity android:name=".TopDialogActivity"
-            android:theme="@android:style/Theme.Holo.Light.Dialog"></activity>
+        <activity
+            android:name=".TopDialogActivity"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
 
         <receiver
             android:name=".IncomingCallBroadcastReceiver"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
@@ -38,7 +44,7 @@
         <service
             android:name=".CallingService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
 
 
     </application>

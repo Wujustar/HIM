@@ -179,3 +179,62 @@ View.setOverScrollMode(View.OVER_SCROLL_ALWAYS); // effect (default)
 이전 액티비티의 노티 프래그먼트가 가지고 있는 뷰페이저의 모든 페이지를 한번씩 앞에 둬야 탭의 변화를 반영할 수 있다.
 
 
+<EditText Style>
+
+    <!--Floating label text style--> <-- 힌트가 위로 플로우팅 됨
+    <style name="MyHintText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@android:color/holo_purple</item>
+    </style>
+
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@android:color/black</item> // 기본 밑줄과 커서 색
+        <item name="colorControlActivated">@android:color/holo_blue_bright</item> // 액티브 되었을 때 밑줄과 커서색
+    </style>
+
+
+
+<WindowManager.LayoutParams Constructor>
+WindowManager.LayoutParams()
+WindowManager.LayoutParams(int _type)
+WindowManager.LayoutParams(int _type, int _flags)
+WindowManager.LayoutParams(int _type, int _flags, int _format)
+WindowManager.LayoutParams(int w, int h, int _type, int _flags, int _format)
+WindowManager.LayoutParams(int w, int h, int xpos, int ypos, int _type, int _flags, int _format)
+WindowManager.LayoutParams(Parcel in)
+
+
+<Overlay Permission version M>
+
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (Settings.canDrawOverlays(this)) {
+                Log.d("phase","SYSTEM_ALERT_WINDOW_PERMISSION Permission is granted");
+            }else{
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, 10);
+
+            }
+
+
+
+<WindowManager.LayoutParams set Flags according to version>
+
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            params = new WindowManager.LayoutParams( width,
+                    WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                            | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                            | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                            | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON,
+                    PixelFormat.TRANSLUCENT);
+        }else{
+            params = new WindowManager.LayoutParams( width,
+                    WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.TYPE_SYSTEM_ERROR,
+                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                            | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                            | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                            | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON,
+                    PixelFormat.TRANSLUCENT);
+        }
