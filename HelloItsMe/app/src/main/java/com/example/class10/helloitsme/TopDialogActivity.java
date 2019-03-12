@@ -65,7 +65,7 @@ public class TopDialogActivity extends Activity {
         }
 
         layoutParams = (LinearLayout.LayoutParams) top_lnl01.getLayoutParams();
-
+        setDraggable();
 
     }
 
